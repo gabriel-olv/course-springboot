@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Order;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.User;
+import br.com.gabrieldeoliveira.udemycoursejpoo.entities.enums.OrderStatus;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.OrderRepository;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.UserRepository;
 
@@ -30,9 +31,9 @@ public class TestConfig {
 		User u2 = new User(null, "João", "joao@gmail.com", "38 9 9923-2131", "12345");
 		User u3 = new User(null, "Dario", "dario@gmail.com", "38 9 9728-1903", "12345");
 		
-		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u3);
+		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
+		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITING_PAYMENT, u3);
 
 		u1.getOrders().add(o1);
 		u2.getOrders().add(o2);
