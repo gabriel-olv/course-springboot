@@ -44,7 +44,8 @@ public class UserService {
 
 	@Transactional
 	public User update(Long id, User data) {
-		User user = userRepository.findById(id).orElse(null);
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(id));
 		user.updateWith(data);
 		return user;
 	}
