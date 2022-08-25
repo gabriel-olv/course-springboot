@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.User;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.UserRepository;
+import br.com.gabrieldeoliveira.udemycoursejpoo.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -20,7 +21,8 @@ public class UserService {
 	}
 	
 	public User findById(Long id) {
-		User obj = userRepository.findById(id).orElse(null);
+		User obj = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(id));
 		return obj;
 	}
 	
