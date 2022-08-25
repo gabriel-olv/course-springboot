@@ -81,9 +81,21 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public List<Order> getOrders() {
 		return orders;
+	}
+
+	public void updateWith(User data) {
+		if (data.getName() != null) {
+			setName(data.getName());
+		}
+		if (data.getEmail() != null) {
+			setEmail(data.getEmail());
+		}
+		if (data.getPhone() != null) {
+			setPhone(data.getPhone());
+		}
 	}
 
 	@Override
