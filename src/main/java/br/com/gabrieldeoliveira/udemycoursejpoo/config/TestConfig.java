@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Category;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Order;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.OrderItem;
+import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Payment;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Product;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.User;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.enums.OrderStatus;
@@ -90,5 +91,10 @@ public class TestConfig {
 		List<OrderItem> orderItems = Arrays.asList(oi1, oi2, oi3, oi4);
 		
 		orderItemRepository.saveAll(orderItems);
+		
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:30:11Z"), o1);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 	}
 }
