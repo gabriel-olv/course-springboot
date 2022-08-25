@@ -11,10 +11,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Category;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Order;
+import br.com.gabrieldeoliveira.udemycoursejpoo.entities.OrderItem;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.Product;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.User;
 import br.com.gabrieldeoliveira.udemycoursejpoo.entities.enums.OrderStatus;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.CategoryRepository;
+import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.OrderItemRepository;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.OrderRepository;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.ProductRepository;
 import br.com.gabrieldeoliveira.udemycoursejpoo.repositories.UserRepository;
@@ -34,6 +36,9 @@ public class TestConfig {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Bean
 	public void dbSeed() {
@@ -76,5 +81,14 @@ public class TestConfig {
 		
 		userRepository.saveAll(users);
 		orderRepository.saveAll(orders);
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		List<OrderItem> orderItems = Arrays.asList(oi1, oi2, oi3, oi4);
+		
+		orderItemRepository.saveAll(orderItems);
 	}
 }
